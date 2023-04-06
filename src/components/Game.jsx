@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Board from "./Board";
 
-export default function Game(props) {
+export default function Game(gameMode) {
   const [turn, setTurn] = useState("x");
   const [values, setValues] = useState(Array(9).fill(null));
   const [win, setWin] = useState();
