@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import Board from "./Board";
+import './game.css'
 
 export default function Game(gameMode) {
   const [turn, setTurn] = useState("x");
   const [values, setValues] = useState(Array(9).fill(null));
   const [win, setWin] = useState();
-
+  const matrice = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
   const checkwinner = (squ) => {
-    const matrice = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
     for (let i in matrice) {
       const [a, b, c] = matrice[i];
       if (squ[a] && squ[a] === squ[b] && squ[a] === squ[c]) {
@@ -58,8 +58,8 @@ export default function Game(gameMode) {
      
       {win && (
         <>
-        <h3>{win} is the winner</h3>
-        <button onClick={newGame}> Nouvelle partie </button>
+        <h3>{win} is the winner 🎉</h3>
+        <button className="btn" onClick={newGame}> Nouvelle partie </button>
         </>
       )
       }
