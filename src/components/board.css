@@ -1,0 +1,15 @@
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 324px;
+    height: 324px;
+    border: 2px solid #ccc;
+    background-color: #eee;
+}
+  
+  .board-row {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+}
+  
