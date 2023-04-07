@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Board from "./Board";
 import "../style/game.css";
+import ComputerPlayer from "./ComputerPlayer";
+import AppT from "./AppT";
 
-export default function Game(gameMode) {
+export default function Game(props) {
   const [turn, setTurn] = useState("x");
-  const [values, setValues] = useState(Array(9).fill(null));
+  const [values, setValues] = useState(Array(9).fill(""));
   const [win, setWin] = useState();
+  const [gameMode, setGameMode] = useState(null);
   const matrice = [
     [0, 1, 2],
     [3, 4, 5],
@@ -29,7 +32,7 @@ export default function Game(gameMode) {
 
   function onClick(x) {
     // alert('click '+ x)
-    if (values[x] !== null) {
+    if (values[x] !== "") {
       alert("!!!");
       return;
     }
@@ -47,7 +50,7 @@ export default function Game(gameMode) {
   }
 
   const newGame = () => {
-    setValues(Array(9).fill(null));
+    setValues(Array(9).fill(""));
     setWin(null);
   };
 
@@ -59,16 +62,43 @@ export default function Game(gameMode) {
       {win ? (
         <>
           <h3>🎉 {win} is the winner 🎉</h3>
-          <button className="btn" onClick={newGame}> Nouvelle partie</button>
+          <button className="btn" onClick={newGame}>
+            Nouvelle partie{" "}
+          </button>
         </>
       ) : (
-        win === 9 && (
+        win === null && (
           <>
             <h3>Match nul</h3>
-            <button className="btn" onClick={newGame}>  Nouvelle partie  </button>
+            <button className="btn" onClick={newGame}>
+              {" "}
+              Nouvelle partie{" "}
+            </button>
           </>
         )
       )}
+
+      <div className="game-info">
+        {gameMode ? (
+          gameMode === "play-vs-computer" ? (
+            <div>
+              <AppT />
+              Vous jouez contre l'ordinateur
+            </div>
+          ) : (
+            <div>Vous jouez contre un ami</div>
+          )
+        ) : (
+          <div>
+            <button onClick={() => setGameMode("play-vs-computer")}>
+              Jouer vs computer
+            </button>
+            <button onClick={() => setGameMode("play-vs-friend")}>
+              Jouer vs ami
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

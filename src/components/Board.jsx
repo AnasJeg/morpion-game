@@ -3,12 +3,11 @@ import Square from "./Square";
 import "../style/board.css";
 
 export default function Board(props) {
- 
   function squ(x) {
     return <Square value={props.values[x]} onClick={() => props.onClick(x)} />;
   }
   return (
-    <div >
+    <div>
       <div className="board-row">
         {squ(0)}
         {squ(1)}
