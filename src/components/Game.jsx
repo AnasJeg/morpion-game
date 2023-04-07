@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Board from "./Board";
 import "../style/game.css";
-import AppT from "./AppT";
+import ComputerPlayer from "./ComputerPlayer";
 
 export default function Game(props) {
   const [turn, setTurn] = useState("x");
@@ -56,36 +56,37 @@ export default function Game(props) {
   return (
     <div>
       <h1>🎮 {turn}</h1>
-      <Board values={values} onClick={onClick} />
-
-      {win ? (
-        <>
-          <h3>🎉 {win} is the winner 🎉</h3>
-          <button className="btn" onClick={newGame}>
-            Nouvelle partie{" "}
-          </button>
-        </>
-      ) : (
-        win === null && (
-          <>
-            <h3>Match nul</h3>
-            <button className="btn" onClick={newGame}>
-              {" "}
-              Nouvelle partie{" "}
-            </button>
-          </>
-        )
-      )}
 
       <div className="game-info">
         {gameMode ? (
           gameMode === "play-vs-computer" ? (
             <div>
-              <AppT />
+              <ComputerPlayer />
               Vous jouez contre l'ordinateur
             </div>
           ) : (
-            <div>Vous jouez contre un ami</div>
+            <div>
+              <Board values={values} onClick={onClick} />
+              Vous jouez contre un ami
+              {win ? (
+                <>
+                  <h3>🎉 {win} is the winner 🎉</h3>
+                  <button className="btn" onClick={newGame}>
+                    Nouvelle partie{" "}
+                  </button>
+                </>
+              ) : (
+                win === null && (
+                  <>
+                    <h3>Match nul</h3>
+                    <button className="btn" onClick={newGame}>
+                      {" "}
+                      Nouvelle partie{" "}
+                    </button>
+                  </>
+                )
+              )}
+            </div>
           )
         ) : (
           <div>

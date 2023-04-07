@@ -1,0 +1,11 @@
+
+div.result{
+    font-size: 2rem;
+    padding: 10px;
+  }
+  div.result.green{
+    background-color: #5a5;
+  }
+  div.result.red{
+    background-color: #a55;
+  }
