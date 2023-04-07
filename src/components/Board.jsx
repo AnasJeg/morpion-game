@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "./Square";
-import "./board.css";
+import "../style/board.css";
 
 export default function Board(props) {
  
@@ -8,7 +8,7 @@ export default function Board(props) {
     return <Square value={props.values[x]} onClick={() => props.onClick(x)} />;
   }
   return (
-    <div>
+    <div >
       <div className="board-row">
         {squ(0)}
         {squ(1)}

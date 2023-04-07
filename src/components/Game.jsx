@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Board from "./Board";
-import './game.css'
+import "../style/game.css";
 
 export default function Game(gameMode) {
   const [turn, setTurn] = useState("x");
@@ -46,23 +46,29 @@ export default function Game(gameMode) {
     setValues(squ);
   }
 
-  const newGame =()=>{
+  const newGame = () => {
     setValues(Array(9).fill(null));
     setWin(null);
-  }
+  };
 
   return (
     <div>
-      <h1>player {turn}</h1>
+      <h1>🎮 {turn}</h1>
       <Board values={values} onClick={onClick} />
-     
-      {win && (
+
+      {win ? (
         <>
-        <h3>{win} is the winner 🎉</h3>
-        <button className="btn" onClick={newGame}> Nouvelle partie </button>
+          <h3>🎉 {win} is the winner 🎉</h3>
+          <button className="btn" onClick={newGame}> Nouvelle partie</button>
         </>
-      )
-      }
+      ) : (
+        win === 9 && (
+          <>
+            <h3>Match nul</h3>
+            <button className="btn" onClick={newGame}>  Nouvelle partie  </button>
+          </>
+        )
+      )}
     </div>
   );
 }
