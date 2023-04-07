@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Board from "./Board";
 import "../style/game.css";
-import ComputerPlayer from "./ComputerPlayer";
 import AppT from "./AppT";
 
 export default function Game(props) {

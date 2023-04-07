@@ -80,7 +80,7 @@ function AppT() {
     }
   }, [squares]);
 
-  function handleSquareClick(index) {
+  function handleComputerMove(index) {
     const isPlayerTurn =
       squares.filter((square) => square !== null).length % 2 === 0;
     if (isPlayerTurn) {
@@ -92,7 +92,7 @@ function AppT() {
 
   return (
     <main>
-      <Board values={squares} onClick={handleSquareClick} />
+      <Board values={squares} onClick={handleComputerMove} />
 
       {!!winner && winner === "x" && (
         <div className="result green">You WON!</div>
