@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "../style/computer.css";
+import "../style/game.css";
 import Board from "./Board";
 
 export default function ComputerPlayer() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [winner, setWinner] = useState(null);
-  const lines = [
+  const [values, setValues] = useState(Array(9).fill(null));
+  const [win, setwin] = useState(null);
+  const matrice = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -16,56 +17,55 @@ export default function ComputerPlayer() {
     [2, 4, 6],
   ];
   useEffect(() => {
-    const isComputerTurn =
-      squares.filter((square) => square !== null).length % 2 === 1;
-    const linesThatAre = (a, b, c) => {
-      return lines.filter((squareIndexes) => {
-        const squareValues = squareIndexes.map((index) => squares[index]);
+    const compTurn =
+      values.filter((val) => val !== null).length % 2 === 1;
+    const matriceThatAre = (a, b, c) => {
+      return matrice.filter((valIndexes) => {
+        const valValues = valIndexes.map((index) => values[index]);
         return (
-          JSON.stringify([a, b, c].sort()) ===
-          JSON.stringify(squareValues.sort())
+          JSON.stringify([a, b, c].sort()) === JSON.stringify(valValues.sort())
         );
       });
     };
-    const emptyIndexes = squares
-      .map((square, index) => (square === null ? index : null))
+    const emptyIndexes = values
+      .map((val, index) => (val === null ? index : null))
       .filter((val) => val !== null);
-    const playerWon = linesThatAre("x", "x", "x").length > 0;
-    const computerWon = linesThatAre("o", "o", "o").length > 0;
+    const playerWon = matriceThatAre("x", "x", "x").length > 0;
+    const computerWon = matriceThatAre("o", "o", "o").length > 0;
     if (playerWon) {
-      setWinner("x");
+      setwin("x");
     }
     if (computerWon) {
-      setWinner("o");
+      setwin("o");
     }
     const putComputerAt = (index) => {
-      let newSquares = squares;
-      newSquares[index] = "o";
-      setSquares([...newSquares]);
+      let newvalues = values;
+      newvalues[index] = "o";
+      setValues([...newvalues]);
     };
-    if (isComputerTurn) {
-      const winingLines = linesThatAre("o", "o", null);
-      if (winingLines.length > 0) {
-        const winIndex = winingLines[0].filter(
-          (index) => squares[index] === null
+    if (compTurn) {
+      const winingmatrice = matriceThatAre("o", "o", null);
+      if (winingmatrice.length > 0) {
+        const winIndex = winingmatrice[0].filter(
+          (index) => values[index] === null
         )[0];
         putComputerAt(winIndex);
         return;
       }
 
-      const linesToBlock = linesThatAre("x", "x", null);
-      if (linesToBlock.length > 0) {
-        const blockIndex = linesToBlock[0].filter(
-          (index) => squares[index] === null
+      const matriceToBlock = matriceThatAre("x", "x", null);
+      if (matriceToBlock.length > 0) {
+        const blockIndex = matriceToBlock[0].filter(
+          (index) => values[index] === null
         )[0];
         putComputerAt(blockIndex);
         return;
       }
 
-      const linesToContinue = linesThatAre("o", null, null);
-      if (linesToContinue.length > 0) {
+      const matriceToContinue = matriceThatAre("o", null, null);
+      if (matriceToContinue.length > 0) {
         putComputerAt(
-          linesToContinue[0].filter((index) => squares[index] === null)[0]
+          matriceToContinue[0].filter((index) => values[index] === null)[0]
         );
         return;
       }
@@ -74,28 +74,41 @@ export default function ComputerPlayer() {
         emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
       putComputerAt(randomIndex);
     }
-  }, [squares]);
+  }, [values]);
 
   function handleComputerMove(index) {
     const isPlayerTurn =
-      squares.filter((square) => square !== null).length % 2 === 0;
+      values.filter((val) => val !== null).length % 2 === 0;
     if (isPlayerTurn) {
-      let newSquares = squares;
-      newSquares[index] = "x";
-      setSquares([...newSquares]);
+      let newvalues = values;
+      newvalues[index] = "x";
+      setValues([...newvalues]);
     }
   }
-
+  const newGame = () => {
+    setValues(Array(9).fill(null));
+    setwin(null);
+  };
   return (
-    <main>
-      <Board values={squares} onClick={handleComputerMove} />
+    <div>
+      <Board values={values} onClick={handleComputerMove} />
 
-      {!!winner && winner === "x" && (
-        <div className="result green">You WON!</div>
+      {win ? (
+        <>
+          <h3>🎉 {win} is the win 🎉</h3>
+          <button className="btn" onClick={newGame}>
+            Nouvelle partie{" "}
+          </button>
+        </>
+      ) : (
+        <>
+          <h3>Match nul</h3>
+          <button className="btn" onClick={newGame}>
+            {" "}
+            Nouvelle partie{" "}
+          </button>
+        </>
       )}
-      {!!winner && winner === "o" && (
-        <div className="result red">You LOST!</div>
-      )}
-    </main>
+    </div>
   );
 }

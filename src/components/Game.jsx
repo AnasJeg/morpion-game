@@ -90,10 +90,12 @@ export default function Game(props) {
           )
         ) : (
           <div>
-            <button onClick={() => setGameMode("play-vs-computer")}>
+            <button className="btn"  onClick={() => setGameMode("play-vs-computer")}>
               Jouer vs computer
+              
             </button>
-            <button onClick={() => setGameMode("play-vs-friend")}>
+           <br/><br/><br/><br/>
+            <button  className="btn" onClick={() => setGameMode("play-vs-friend")}>
               Jouer vs ami
             </button>
           </div>
