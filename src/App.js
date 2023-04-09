@@ -7,6 +7,7 @@ function App() {
     <div className="App" >
       <h2>JEU DE MORPION</h2>
       <Game />
+      <br/><br/><br/>
      <Foot/>
     </div>
   );

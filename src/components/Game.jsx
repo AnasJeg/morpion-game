@@ -60,13 +60,11 @@ export default function Game(props) {
             <div>
               <h1>Player (x) vs computer (o) </h1>
               <ComputerPlayer />
-              Vous jouez contre l'ordinateur
             </div>
           ) : (
             <div>
               <h1>Player ({turn})</h1>
-              <Board values={values} onClick={onClick} />
-              Vous jouez contre un ami
+              <Board values={values} onClick={onClick} />    
               {win ? (
                 <>
                   <h1 style={{color: "#10B981"}} >🎉 {win} is the winner 🎉</h1>
