@@ -81,9 +81,13 @@ export default function ComputerPlayer() {
   function handleComputerMove(index) {
     const isPlayerTurn = values.filter((val) => val !== null).length % 2 === 0;
     if (isPlayerTurn) {
+      if(values[index] === "o"){
+          return ;
+      }else{
       let newvalues = values;
       newvalues[index] = "x";
       setValues([...newvalues]);
+      }
     }
   }
   const newGame = () => {
@@ -96,14 +100,14 @@ export default function ComputerPlayer() {
       <Board values={values} onClick={handleComputerMove} />
       {win ? (
         <>
-          <h3>🎉 {win} is the winner 🎉</h3>
+          <h1>🎉 {win} is the winner 🎉</h1>
           <button className="btnN" onClick={newGame}>
             Nouvelle partie{" "}
           </button>
         </>
       ) : values.filter((val) => val === null).length === 0 && win === null ? (
         <>
-          <h3>No winner 🚫</h3>
+          <h1>No winner 🚫</h1>
           <button className="btnN" onClick={newGame}>
             Nouvelle partie
           </button>

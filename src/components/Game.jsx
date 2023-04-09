@@ -33,7 +33,6 @@ export default function Game(props) {
   function onClick(x) {
     // alert('click '+ x)
     if (values[x] !== "") {
-      alert("!!!");
       return;
     }
     let squ = [...values];
@@ -59,25 +58,25 @@ export default function Game(props) {
         {gameMode ? (
           gameMode === "play-vs-computer" ? (
             <div>
-              <h1>🎮 {turn}</h1>
+              <h1>Player (x) vs computer (o) </h1>
               <ComputerPlayer />
               Vous jouez contre l'ordinateur
             </div>
           ) : (
             <div>
-              <h1>🎮 {turn}</h1>
+              <h1>Player ({turn})</h1>
               <Board values={values} onClick={onClick} />
               Vous jouez contre un ami
               {win ? (
                 <>
-                  <h3>🎉 {win} is the winner 🎉</h3>
+                  <h1>🎉 {win} is the winner 🎉</h1>
                   <button className="btnN" onClick={newGame}>
                     Nouvelle partie{" "}
                   </button>
                 </>
               ) : !values.includes("") ? (
                 <>
-                  <h3>No winner 🚫</h3>
+                  <h1>No winner 🚫</h1>
                   <button className="btnN" onClick={newGame}>
                     {" "}
                     Nouvelle partie{" "}
