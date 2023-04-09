@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import "../style/computer.css";
 import "../style/game.css";
 import Board from "./Board";
-
+const matrice = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 export default function ComputerPlayer() {
   const [values, setValues] = useState(Array(9).fill(null));
   const [win, setwin] = useState(null);
-  const matrice = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+ 
   useEffect(() => {
     const compTurn =
       values.filter((val) => val !== null).length % 2 === 1;

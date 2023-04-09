@@ -55,17 +55,17 @@ export default function Game(props) {
 
   return (
     <div>
-      <h1>🎮 {turn}</h1>
-
       <div className="game-info">
         {gameMode ? (
           gameMode === "play-vs-computer" ? (
             <div>
+              <h1>🎮 {turn}</h1>
               <ComputerPlayer />
               Vous jouez contre l'ordinateur
             </div>
           ) : (
             <div>
+              <h1>🎮 {turn}</h1>
               <Board values={values} onClick={onClick} />
               Vous jouez contre un ami
               {win ? (
@@ -90,12 +90,17 @@ export default function Game(props) {
           )
         ) : (
           <div>
-            <button className="btn"  onClick={() => setGameMode("play-vs-computer")}>
+            <button
+              className="btn"
+              onClick={() => setGameMode("play-vs-computer")}
+            >
               Jouer vs computer
-              
             </button>
-           <br/><br/><br/><br/>
-            <button  className="btn" onClick={() => setGameMode("play-vs-friend")}>
+            <br/>
+            <button
+              className="btn"
+              onClick={() => setGameMode("play-vs-friend")}
+            >
               Jouer vs ami
             </button>
           </div>
