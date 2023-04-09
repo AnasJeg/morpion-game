@@ -6,8 +6,14 @@ export default function Board(props) {
   function squ(x) {
     return <Square value={props.values[x]} onClick={() => props.onClick(x)} />;
   }
+  const backMain = () => {
+    window.location.reload();
+  };
   return (
     <div>
+      <button className="btnBack" onClick={backMain}>
+        Back
+      </button>
       <div className="board-row">
         {squ(0)}
         {squ(1)}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Board from "./Board";
 import "../style/game.css";
+import "../style/computer.css";
 import ComputerPlayer from "./ComputerPlayer";
 
 export default function Game(props) {
@@ -52,7 +53,6 @@ export default function Game(props) {
     setValues(Array(9).fill(""));
     setWin(null);
   };
-
   return (
     <div>
       <div className="game-info">
@@ -71,21 +71,19 @@ export default function Game(props) {
               {win ? (
                 <>
                   <h3>🎉 {win} is the winner 🎉</h3>
-                  <button className="btn" onClick={newGame}>
+                  <button className="btnN" onClick={newGame}>
                     Nouvelle partie{" "}
                   </button>
                 </>
-              ) : (
-                win === null && (
-                  <>
-                    <h3>Match nul</h3>
-                    <button className="btn" onClick={newGame}>
-                      {" "}
-                      Nouvelle partie{" "}
-                    </button>
-                  </>
-                )
-              )}
+              ) : !values.includes("") ? (
+                <>
+                  <h3>Match nul</h3>
+                  <button className="btnN" onClick={newGame}>
+                    {" "}
+                    Nouvelle partie{" "}
+                  </button>
+                </>
+              ) : null}
             </div>
           )
         ) : (
@@ -96,7 +94,7 @@ export default function Game(props) {
             >
               Jouer vs computer
             </button>
-            <br/>
+            <br />
             <button
               className="btn"
               onClick={() => setGameMode("play-vs-friend")}

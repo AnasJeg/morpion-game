@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../style/computer.css";
 import "../style/game.css";
 import Board from "./Board";
+
 const matrice = [
   [0, 1, 2],
   [3, 4, 5],
@@ -15,10 +16,9 @@ const matrice = [
 export default function ComputerPlayer() {
   const [values, setValues] = useState(Array(9).fill(null));
   const [win, setwin] = useState(null);
- 
+
   useEffect(() => {
-    const compTurn =
-      values.filter((val) => val !== null).length % 2 === 1;
+    const compTurn = values.filter((val) => val !== null).length % 2 === 1;
     const matriceThatAre = (a, b, c) => {
       return matrice.filter((valIndexes) => {
         const valValues = valIndexes.map((index) => values[index]);
@@ -34,10 +34,12 @@ export default function ComputerPlayer() {
     const computerWon = matriceThatAre("o", "o", "o").length > 0;
     if (playerWon) {
       setwin("x");
-    }
-    if (computerWon) {
+    } else if (computerWon) {
       setwin("o");
+    } else {
+      setwin(null);
     }
+
     const putComputerAt = (index) => {
       let newvalues = values;
       newvalues[index] = "o";
@@ -77,8 +79,7 @@ export default function ComputerPlayer() {
   }, [values]);
 
   function handleComputerMove(index) {
-    const isPlayerTurn =
-      values.filter((val) => val !== null).length % 2 === 0;
+    const isPlayerTurn = values.filter((val) => val !== null).length % 2 === 0;
     if (isPlayerTurn) {
       let newvalues = values;
       newvalues[index] = "x";
@@ -89,26 +90,25 @@ export default function ComputerPlayer() {
     setValues(Array(9).fill(null));
     setwin(null);
   };
+
   return (
     <div>
       <Board values={values} onClick={handleComputerMove} />
-
       {win ? (
         <>
           <h3>🎉 {win} is the win 🎉</h3>
-          <button className="btn" onClick={newGame}>
+          <button className="btnN" onClick={newGame}>
             Nouvelle partie{" "}
           </button>
         </>
-      ) : (
+      ) : values.filter((val) => val === null).length === 0 && win === null ? (
         <>
-          <h3>Match nul</h3>
-          <button className="btn" onClick={newGame}>
-            {" "}
-            Nouvelle partie{" "}
+          <h3>No winner</h3>
+          <button className="btnN" onClick={newGame}>
+            Nouvelle partie
           </button>
         </>
-      )}
+      ) : null}
     </div>
   );
 }
