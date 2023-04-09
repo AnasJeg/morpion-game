@@ -1,0 +1,9 @@
+p {
+    animation-duration: 4s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+  }
+  @keyframes slidein {
+    from {color: rgb(0, 0, 0);}
+    to {color: rgb(255, 255, 255);}
+  }
