@@ -77,7 +77,7 @@ export default function Game(props) {
                 </>
               ) : !values.includes("") ? (
                 <>
-                  <h3>Match nul</h3>
+                  <h3>No winner 🚫</h3>
                   <button className="btnN" onClick={newGame}>
                     {" "}
                     Nouvelle partie{" "}

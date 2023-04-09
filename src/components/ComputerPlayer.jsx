@@ -96,14 +96,14 @@ export default function ComputerPlayer() {
       <Board values={values} onClick={handleComputerMove} />
       {win ? (
         <>
-          <h3>🎉 {win} is the win 🎉</h3>
+          <h3>🎉 {win} is the winner 🎉</h3>
           <button className="btnN" onClick={newGame}>
             Nouvelle partie{" "}
           </button>
         </>
       ) : values.filter((val) => val === null).length === 0 && win === null ? (
         <>
-          <h3>No winner</h3>
+          <h3>No winner 🚫</h3>
           <button className="btnN" onClick={newGame}>
             Nouvelle partie
           </button>
