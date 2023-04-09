@@ -9,6 +9,7 @@ export default function Game(props) {
   const [values, setValues] = useState(Array(9).fill(""));
   const [win, setWin] = useState();
   const [gameMode, setGameMode] = useState(null);
+ 
   const matrice = [
     [0, 1, 2],
     [3, 4, 5],
@@ -52,6 +53,7 @@ export default function Game(props) {
     setValues(Array(9).fill(""));
     setWin(null);
   };
+
   return (
     <div>
       <div className="game-info">
@@ -60,6 +62,7 @@ export default function Game(props) {
             <div>
               <h1>Player (x) vs computer (o) </h1>
               <ComputerPlayer />
+            
             </div>
           ) : (
             <div>

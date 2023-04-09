@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../style/computer.css";
 import "../style/game.css";
 import Board from "./Board";
+import {  Radio, Space } from 'antd';
 
 const matrice = [
   [0, 1, 2],
@@ -94,9 +95,21 @@ export default function ComputerPlayer() {
     setValues(Array(9).fill(null));
     setwin(null);
   };
-
+  // level
+  const [placement, setPlacement] = useState('normal');
+  const onChange = (e) => {
+    setPlacement(e.target.value);
+    newGame();
+  };
   return (
     <div>
+      <Space>
+        <Radio.Group value={placement} onChange={onChange} >
+          <Radio value="easy">Easy</Radio>
+          <Radio  value="normal" >Normal</Radio>
+          <Radio value="difficult">Difficult</Radio>
+        </Radio.Group>
+      </Space>
       <Board values={values} onClick={handleComputerMove} />
       {win ? (
         <>
