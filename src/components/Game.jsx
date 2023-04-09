@@ -69,14 +69,14 @@ export default function Game(props) {
               Vous jouez contre un ami
               {win ? (
                 <>
-                  <h1>🎉 {win} is the winner 🎉</h1>
+                  <h1 style={{color: "#10B981"}} >🎉 {win} is the winner 🎉</h1>
                   <button className="btnN" onClick={newGame}>
                     Nouvelle partie{" "}
                   </button>
                 </>
               ) : !values.includes("") ? (
                 <>
-                  <h1>No winner 🚫</h1>
+                  <h1 style={{color: "#DC2626"}} >No winner 🚫</h1>
                   <button className="btnN" onClick={newGame}>
                     {" "}
                     Nouvelle partie{" "}

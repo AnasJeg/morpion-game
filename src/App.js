@@ -1,4 +1,5 @@
 import './App.css';
+import Foot from './components/Foot';
 import Game from './components/Game';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App" >
       <h2>JEU DE MORPION</h2>
       <Game />
+     <Foot/>
     </div>
   );
 }
